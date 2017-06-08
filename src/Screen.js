@@ -101,7 +101,9 @@ class Navigator {
       to: to ? to : 'unspecified'
     };
     
-    this.onNavigatorEvent(event);
+    for (let i in _allNavigatorEventHandlers) {
+      _allNavigatorEventHandlers[i](event);
+    }
     
     return platformSpecific.navigatorToggleDrawer(this, params);
   }
