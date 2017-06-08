@@ -93,18 +93,8 @@ class Navigator {
   }
 
   toggleDrawer(params = {}) {
-    let { side, animated, to } = params;
-    const event = {
-      type: 'ToggleDrawer',
-      side: side,
-      animated: !!animated,
-      to: to ? to : 'unspecified'
-    };
-    
-    for (let i in _allNavigatorEventHandlers) {
-      _allNavigatorEventHandlers[i](event);
-    }
-    
+    Navigation.handleToggleDrawer(params);
+
     return platformSpecific.navigatorToggleDrawer(this, params);
   }
 

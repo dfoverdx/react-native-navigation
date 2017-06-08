@@ -28,7 +28,7 @@ function _registerComponentNoRedux(screenID, generator) {
     if (!InternalComponent) {
       console.error(`Navigation: ${screenID} registration result is 'undefined'`);
     }
-    
+
     return class extends Screen {
       static navigatorStyle = InternalComponent.navigatorStyle || {};
       static navigatorButtons = InternalComponent.navigatorButtons || {};
@@ -160,6 +160,20 @@ function handleDeepLink(params = {}) {
   for (let i in _allNavigatorEventHandlers) {
     _allNavigatorEventHandlers[i](event);
   }
+}
+
+function handleToggleDrawer(params = {}) {
+  let { side, animated, to } = params;
+    const event = {
+      type: 'ToggleDrawer',
+      side: side,
+      animated: !!animated,
+      to: to ? to : 'toggle'
+    };
+
+    for (let i in _allNavigatorEventHandlers) {
+      _allNavigatorEventHandlers[i](event);
+    }
 }
 
 export default {
